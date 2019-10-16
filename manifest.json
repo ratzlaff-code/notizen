@@ -1,0 +1,16 @@
+{
+  "short_name": "Meine Notizen",
+  "name": "Meine Notizen",
+  "start_url": "index.html",
+  "icons": [
+    {
+      "src": "favicon.png",
+      "sizes": "48x48",
+      "type": "image/png"
+    }
+  ],
+  "background_color": "#FFEB3B",
+  "theme_color": "#FFEB3B",
+  "display": "standalone",
+  "oriantation": "any"
+}

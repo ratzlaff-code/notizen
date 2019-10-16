@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <link rel="manifest" href="manifest.json">
+  <link rel="icon" href="favicon.png" type="image/png">
+  
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+  <title>Meine Notizen</title>
+
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+  
+  <link rel="stylesheet" href="style.css">
+</head>
+
+<body onload="myApp.stack.innerHTML = localStorage.getItem('myStack'); chStack();" onclick="event.preventDefault()">
+   
+  <!-- Der Hauptbereich -->
+  <header class="header">
+    <i id="showInfo" class="material-icons" title="Infos anzeigen">info</i>
+    <strong>Notizen</strong>
+    <i id="add" class="material-icons" title="Neue Notiz erstellen">add_circle</i>
+  </header>
+  
+  <div id="stack"></div>
+  
+  <div id="bgrLogo">
+    <i class="material-icons">receipt</i>
+    <p>Keine Notizen vorhanden</p>
+  </div>
+
+
+  <!-- Der Bearbeitungsmodus -->
+  <div id="editor" class="modal">
+    <div id="editorContainer" class="container">
+      
+      <div class="header" style="background-color: #E0E0E0">
+        <i id="save" title="Zurück" class="material-icons">arrow_back</i>
+        <strong>Notiz bearbeiten</strong>
+          <i id="del" title="Löschen" class="material-icons">delete</i>
+      </div>
+      
+      <div id="editorNote" contenteditable="true"></div>
+      
+      <div id="editorFormats">
+        <button id="formBold" title="Fett" class="material-icons">format_bold</button>
+        <button id="formItalic" title="Kursiv" class="material-icons">format_italic</button>
+        <button id="formUnderline" title="Unterstrich" class="material-icons">format_underline</button>
+        <button id="formBullets" title="Bullets" class="material-icons">format_list_bulleted</button>
+        <button id="formNumbers" title="Nummern" class="material-icons">format_list_numbered</button>
+        <button id="formCheck" title="Checkliste" class="material-icons">check_box</button>
+        <button id="formColor" title="Farbe" class="material-icons">palette</button>
+      </div>
+      
+      <div id="colPalette">
+        <button onmousedown="chColor(this)" title="Weiß" style="background-color: #FFFFFF"></button>
+        <button onmousedown="chColor(this)" title="Rot" style="background-color: #EF9A9A"></button>
+        <button onmousedown="chColor(this)" title="Orange" style="background-color: #FFCC80"></button>
+        <button onmousedown="chColor(this)" title="Lila" style="background-color: #CE93D8"></button><br>
+        <button onmousedown="chColor(this)" title="Gelb" style="background-color: #FFF59D"></button>
+        <button onmousedown="chColor(this)" title="Grün" style="background-color: #A5D6A7"></button>
+        <button onmousedown="chColor(this)" title="Blau" style="background-color: #81D4FA"></button>
+        <button onmousedown="chColor(this)" title="Pink" style="background-color: #F48FB1"></button>
+      </div>
+      
+    </div>
+  </div>
+  
+  <!-- Der Bestätigungsdialog -->
+  <div id="myConf" class="modal">
+    <div id="myConfContainer">
+      
+      <div id="myConfHead">
+        <strong style="line-height: 24px">Bitte bestätigen</strong>
+        <span id="myConfControls" style="float:right">
+          <i id="myConfYes" title="Ja" class="material-icons">done</i>
+          <i id="myConfNo" title="Nein" class="material-icons">close</i>
+        </span>
+      </div>
+      
+      <div id="myConfText">Notiz wirklich löschen?</div>
+      
+    </div>
+  </div>
+  
+  <!-- Das Infofenster -->
+  <div id="myInfo" class="modal">
+    <div class="container">
+      
+      <div id="myInfoHead" class="header">
+        <i id="myInfoClose" title="Schließen" class="material-icons">close</i>
+        <strong>Infos</strong>
+      </div>
+      
+      <div id="myInfoBody">
+        <div class="myInfoText">
+          <i class="material-icons">border_color</i>
+          <p>Meine Notizen</p>
+          <p>Version: 1.1</p>
+        </div>
+        
+        <div class="myInfoText">
+          <i class="material-icons">brush</i>
+          <p>Design</p>
+          <p>Andreas Ratzlaff</p>
+        </div>
+          
+        <div class="myInfoText">
+          <i class="material-icons">code</i>
+          <p>Programmierung</p>
+          <p>Andreas Ratzlaff</p>
+        </div>
+          
+        <div class="myInfoText">
+          <i class="material-icons">stars</i>
+          <p>Fonts und Icons</p>
+          <p>Google Inc.</p>
+        </div>
+      </div>
+      
+    </div>
+  </div>
+  
+  <!-- Der Notizprototyp: -->
+  <div class="aNote" onclick="location.hash = 'edit-' + this.id"></div>
+
+  <script src="script.js"></script>
+</body>
+</html>
